@@ -1,12 +1,13 @@
 {
-  "name": "proxy-2",
+  "name": "node-proxys-erver",
   "version": "1.0.0",
-  "description": "Server to server API request ",
-  "main": "../proxy-2/index.js",
+  "description": "Project for learning how to make own proxy server",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "kkorchyts@gmail.com",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.7"
