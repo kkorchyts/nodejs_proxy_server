@@ -2,7 +2,7 @@
   "name": "proxy-2",
   "version": "1.0.0",
   "description": "Server to server API request ",
-  "main": "index.js",
+  "main": "../proxy-2/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
