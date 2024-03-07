@@ -3,13 +3,14 @@ const https = require('https')
 const {readFileSync} = require("fs");
 
 const agent = new https.Agent({
-    cert: readFileSync('api.nasa.gov.crt'),
+    ca: readFileSync('./documentation/api.nasa.gov.crt'),
+    keepAlive: false
 })
 
 
-axios.get('https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=DEMO_KEY', {httpsAgent: agent})
+axios.get('https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=HbHtaeBq9uBvhnOgHevSduGXNvxK5T6ItTO7yPWg', {httpsAgent: agent})
     .then(res => {
-        console.log('Status Code:', res.status);
+        console.log('Status Code:', res);
         /*const headerDate = res.headers && res.headers.date ? res.headers.date : 'no response date';
         console.log('Status Code:', res.status);
         console.log('Date in Response header:', headerDate);
