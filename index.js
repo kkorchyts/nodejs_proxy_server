@@ -1,25 +1,8 @@
-const axios = require('axios');
-const https = require('https')
-const {readFileSync} = require("fs");
+import {axiosNasaClient} from "./src/clients/index.js";
 
-const agent = new https.Agent({
-    ca: readFileSync('./documentation/api.nasa.gov.crt'),
-    keepAlive: false
-})
-
-
-axios.get('https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=HbHtaeBq9uBvhnOgHevSduGXNvxK5T6ItTO7yPWg', {httpsAgent: agent})
+axiosNasaClient.getAsteroidsCountByPeriod('2024-02-26', '2024-03-01')
     .then(res => {
-        console.log('Status Code:', res);
-        /*const headerDate = res.headers && res.headers.date ? res.headers.date : 'no response date';
-        console.log('Status Code:', res.status);
-        console.log('Date in Response header:', headerDate);
-
-        const users = res.data;
-
-        for(user of users) {
-            console.log(`Got user with id: ${user.id}, name: ${user.name}`);
-        }*/
+        console.log('Nasa response is:', res.data);
     })
     .catch(err => {
         console.log('Error: ', err.message);
