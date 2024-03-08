@@ -1,7 +1,5 @@
 import axios from "axios";
-
-const NASA_BASE_URL = 'https://api.nasa.gov/neo/rest/v1/feed';
-const API_KEY = 'HbHtaeBq9uBvhnOgHevSduGXNvxK5T6ItTO7yPWg';
+import { config } from "../../../config.js";
 
 export class AxiosNasaClient {
     async getAsteroidsCountByPeriod(from, to) {
@@ -11,11 +9,11 @@ export class AxiosNasaClient {
 
 const buildRequest = (from, to) => {
     return {
-        baseURL: NASA_BASE_URL,
+        baseURL: config.nasaApiConfig.url,
         params: {
             start_date: from,
             end_date: to,
-            api_key: API_KEY
+            api_key: config.nasaApiConfig.key
         }
     }
 }
