@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-const result = dotenv.config();
+dotenv.config();
 
 export const config = {
     nasaApiConfig: {
