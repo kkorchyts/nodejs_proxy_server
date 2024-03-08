@@ -2,7 +2,7 @@
   "name": "node-proxys-erver",
   "version": "1.0.0",
   "description": "Project for learning how to make own proxy server",
-  "main": "index.js",
+  "main": "src/api/server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.7",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3"
   }
 }
