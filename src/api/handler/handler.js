@@ -1,18 +1,7 @@
 import {axiosNasaClient} from "../../clients/index.js";
 import {getPreviousPeriod, parseDate} from "./dateUtils.js";
 
-const retrieveAsteroidsData = async (date) => {
-    const period = getPreviousPeriod(date);
-    return await axiosNasaClient.getAsteroidsCountByPeriod(period)
-        .then(res => {
-            return res
-        })
-        .catch(() => {
-            throw new Error()
-        });
-}
-
-export const retrieveAsteroidsDataHandler = async (req, res) => {
+export const handler = async (req, res) => {
     const dateQuery = req.query.date;
     const {errorMessage, date} = parseDate(dateQuery);
     if (errorMessage) {
@@ -21,7 +10,8 @@ export const retrieveAsteroidsDataHandler = async (req, res) => {
     }
 
     try {
-        const response = await retrieveAsteroidsData(date);
+        const period = getPreviousPeriod(date);
+        const response = await axiosNasaClient.getAsteroidsCountByPeriod(period);
         res.set("Content-Type", "application/json")
         res.send(JSON.stringify(response, null, 2));
     } catch (error) {

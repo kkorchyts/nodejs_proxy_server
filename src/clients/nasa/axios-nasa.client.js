@@ -29,11 +29,6 @@ const parseNasaAsteroidsData = (data) => {
     return result;
 }
 
-
-const buildResponse = async (res) => {
-    return res;
-}
-
 const buildRequest = ({from, to}) => {
     return {
         baseURL: config.nasaApiConfig.url,
@@ -48,9 +43,9 @@ const buildRequest = ({from, to}) => {
 export class AxiosNasaClient {
     async getAsteroidsCountByPeriod(period) {
         const request = buildRequest(period);
-        const {status, data} = await buildResponse(axios.request(request));
+        const {status, data} = await axios.request(request);
         if (status !== HttpStatusCode.Ok) {
-            throw new Error(`NASA API response is ${response.status}`);
+            throw new Error(`NASA API response is ${status}`);
         }
         return parseNasaAsteroidsData(data);
     }

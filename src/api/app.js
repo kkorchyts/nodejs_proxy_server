@@ -1,5 +1,5 @@
 import express from "express"
-import {retrieveAsteroidsDataHandler} from "./handler/retrieve-asteroids-data.handler.js";
+import {handler} from "./handler/handler.js";
 
 export const app = express();
-app.get('/meteors', retrieveAsteroidsDataHandler)
+app.get('/meteors', handler)
