@@ -1,7 +1,4 @@
-import {constants} from "http2"
-import http from "http"
-
-export const errorMiddleware = (err, req, res, next) => {
+export const errorMiddleware = (err, req, res) => {
     const errorCode = err.statusCode || 500;
     res.status(errorCode);
     const resBody = {

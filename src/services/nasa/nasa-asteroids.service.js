@@ -23,7 +23,6 @@ const parseAsteroidsToCount = (dataArray, dangerousOnly) => {
 }
 
 const parseNasaAsteroidsData = (data, countOnly, dangerousOnly) => {
-    const result = {};
     const asteroidArrayParser = countOnly ? parseAsteroidsToCount : parseAsteroidsToArray;
     return Object.keys(data.near_earth_objects).reduce((acc, key) => {
         return {...acc, [key]: asteroidArrayParser(data.near_earth_objects[key], dangerousOnly)}
