@@ -41,7 +41,7 @@ const parseNasaAsteroidsData = (data, countOnly, dangerousOnly) => {
 }
 
 export class NasaAsteroidsService {
-    async getAsteroidsCountByPeriod(period, countOnly, dangerousOnly) {
+    async getAsteroidsByPeriod(period, countOnly, dangerousOnly) {
         const asteroidsData = await axiosNasaClient.getAsteroidsCountByPeriod(period);
         return parseNasaAsteroidsData(asteroidsData, countOnly, dangerousOnly);
     }
