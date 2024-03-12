@@ -4,7 +4,7 @@ import {getPreviousPeriod, validateDate} from "./dateUtils.js";
 const parseQueryParams = (query) => {
     return {
         date: query.date,
-        countOnly: !query.count ? false : query.count.toLowerCase() === "true",
+        countOnly: !query["count"] ? false : query.count.toLowerCase() === "true",
         dangerousOnly: !query["were-dangerous-meteors"] ? false : query["were-dangerous-meteors"].toLowerCase() === "true",
     }
 }
