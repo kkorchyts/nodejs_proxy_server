@@ -1,5 +1,8 @@
 import express from "express"
-import {handler} from "./handler/handler.js";
+import {nasaAsteroidsHandler} from "./handler/nasa-asteroids.handler.js";
+import {checkQueryParamMiddleware} from "./middleware/nasa-asteroids.middleware.js";
+import {exceptionFilterMiddleware} from "./middleware/exception-filter.middleware.js";
 
 export const app = express();
-app.get('/meteors', handler)
+app.get('/meteors', checkQueryParamMiddleware, nasaAsteroidsHandler)
+app.use(exceptionFilterMiddleware);

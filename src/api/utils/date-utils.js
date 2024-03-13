@@ -1,12 +1,11 @@
 import {isFuture, isValid, parse, previousFriday, previousMonday} from "date-fns";
 
-export const parseDate = (dt) => {
+export const validateDate = (dt) => {
     let errorMessage = "";
     try {
         const date = parse(dt, 'yyyy-MM-dd', new Date());
-
         if (isValid(date) && !isFuture(date)) {
-            return {date};
+            return {};
         }
         errorMessage = `${dt} - wrong Date format or date is in the future!`;
     } catch (error) {
