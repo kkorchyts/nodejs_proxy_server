@@ -10,6 +10,9 @@ export const config = {
         roverPhotosUrl: process.env.NASA_API_PHOTOS_ROVER_URL || "",
         photosRoverManifestUrl: process.env.NASA_API_PHOTOS_MANIFEST_URL || "",
     },
+    sentryConfig: {
+        dns: process.env.SENTRY_DNS || "",
+    },
     appServerConfig: {
         port: process.env.PORT
     }
