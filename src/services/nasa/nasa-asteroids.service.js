@@ -1,4 +1,4 @@
-import {axiosNasaClient} from "../../clients/index.js";
+import {nasaGetAsteroidsClient} from "../../clients/index.js";
 
 const parseAsteroidsToArray = (dataArray, dangerousOnly) => {
     return {
@@ -29,9 +29,7 @@ const parseNasaAsteroidsData = (data, countOnly, dangerousOnly) => {
     }, {})
 }
 
-export class NasaAsteroidsService {
-    async getAsteroidsByPeriod(period, countOnly, dangerousOnly) {
-        const asteroidsData = await axiosNasaClient.getAsteroidsCountByPeriod(period);
-        return parseNasaAsteroidsData(asteroidsData, countOnly, dangerousOnly);
-    }
+export const getAsteroidsByPeriod = async (period, countOnly, dangerousOnly) => {
+    const asteroidsData = await nasaGetAsteroidsClient(period);
+    return parseNasaAsteroidsData(asteroidsData, countOnly, dangerousOnly);
 }
