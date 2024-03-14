@@ -2,7 +2,7 @@
   "name": "node-proxys-erver",
   "version": "1.0.0",
   "description": "Project for learning how to make own proxy server",
-  "main": "server.js",
+  "main": "src/api/server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
