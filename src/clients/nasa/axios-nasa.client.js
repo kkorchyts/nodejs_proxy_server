@@ -1,6 +1,5 @@
-import axios, {HttpStatusCode} from "axios";
+import axios from "axios";
 import {config} from "../../config/config.js";
-import {Exception} from "../../api/exceptions/Exception.js";
 
 export const buildGetAsteroidsRequest = ({from, to}) => {
     return {
@@ -38,30 +37,8 @@ export const buildGetPhotosRequest = ({roverName, earthDate}) => {
     }
 }
 
-const validateNasaResponse = (status) => {
-    if (status !== HttpStatusCode.Ok) {
-        throw new Exception(status, `NASA API response is ${status}`);
-    }
-}
-
-export class AxiosNasaClient {
-    async getAsteroidsCountByPeriod(period) {
-        const request = buildGetAsteroidsRequest(period);
-        const {status, data} = await axios.request(request);
-        validateNasaResponse(status);
-        return data;
-    }
-
-    async getRoverManifest(roverName) {
-        const request = buildGetManifestRequest(roverName);
-        const {status, data} = await axios.request(request);
-        validateNasaResponse(status);
-        return data;
-    }
-}
-
-export const axiosNasaClient = async (requestBuilder) => {
-    const {status, data} = await axios.request(requestBuilder);
-    validateNasaResponse(status);
-    return data;
+export const axiosNasaClient = async (requestBuilder, schema) => {
+    const response = await axios.request(requestBuilder);
+    const value = await schema.validateAsync(response, {abortEarly: false, stripUnknown: true});
+    return value.data;
 }
