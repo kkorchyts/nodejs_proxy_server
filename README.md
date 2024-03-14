@@ -1,4 +1,5 @@
 # nodejs_proxy_server
 
-# running the server: 
-node .\src\api\server.js 
+# running the server:
+
+node .\src\api\server.js
