@@ -1,5 +1,7 @@
 import {Exception} from "../exceptions/Exception.js";
-import {dateSchema, roverNameSchema, userDataSchema} from "../validators/schemas.validator.js";
+import {userDataSchema} from "../schemas/user-data.schema.js";
+import {roverNameSchema} from "../schemas/rover-name.schema.js";
+import {dateSchema} from "../schemas/date.schema.js";
 
 const queryDateReader = (req) => req.query["date"];
 const paramRoverNameReader = (req) => req.params["rover"];
