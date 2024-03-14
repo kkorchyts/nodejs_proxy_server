@@ -28,11 +28,11 @@ app.use(Sentry.Handlers.requestHandler());
 app.use(Sentry.Handlers.tracingHandler());
 
 app.use(express.json());
-app.get('/meteors', validateDateMiddleware, nasaAsteroidsHandler)
-app.get('/photos/:rover', validateRoverNameMiddleware, nasaPhotosHandler)
-app.post('/user', validateUserDataMiddleware, userDataHandler)
+app.get("/meteors", validateDateMiddleware, nasaAsteroidsHandler)
+app.get("/photos/:rover", validateRoverNameMiddleware, nasaPhotosHandler)
+app.post("/user", validateUserDataMiddleware, userDataHandler)
 
 app.use(Sentry.Handlers.errorHandler());
 app.use(exceptionFilterMiddleware);
 
-app.use('*', (req, res) => res.status(404).json({ message: 'Page not found' }))
+app.use("*", (req, res) => res.status(404).json({ message: "Page not found" }))
