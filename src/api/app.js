@@ -14,14 +14,14 @@ import { config } from "../config/config.js";
 
 export const app = express();
 Sentry.init({
-    dsn: config.sentryConfig.dns,
-    integrations: [
-        new Sentry.Integrations.Http({ tracing: true }),
-        new Sentry.Integrations.Express({ app }),
-        new ProfilingIntegration(),
-    ],
-    tracesSampleRate: 1.0,
-    profilesSampleRate: 1.0,
+  dsn: config.sentryConfig.dns,
+  integrations: [
+    new Sentry.Integrations.Http({ tracing: true }),
+    new Sentry.Integrations.Express({ app }),
+    new ProfilingIntegration(),
+  ],
+  tracesSampleRate: 1.0,
+  profilesSampleRate: 1.0,
 });
 
 app.use(Sentry.Handlers.requestHandler());
@@ -35,4 +35,4 @@ app.post("/user", validateUserDataMiddleware, userDataHandler);
 app.use(Sentry.Handlers.errorHandler());
 app.use(exceptionFilterMiddleware);
 
-app.use("*", (req, res) => res.status(404).json({ message: "Page not found" }))
+app.use("*", (req, res) => res.status(404).json({ message: "Page not found" }));
