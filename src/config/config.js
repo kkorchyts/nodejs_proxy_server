@@ -1,4 +1,6 @@
 import dotenv from "dotenv";
+import * as Sentry from "@sentry/node";
+import {ProfilingIntegration} from "@sentry/profiling-node";
 
 dotenv.config();
 
@@ -17,3 +19,23 @@ export const config = {
     port: process.env.PORT,
   },
 };
+
+export const sentryConfig = (app) => {
+  return {
+    dsn: config.sentryConfig.dns,
+    integrations: [
+      new Sentry.Integrations.Http({tracing: true}),
+      new Sentry.Integrations.Express({app}),
+      new ProfilingIntegration(),
+    ],
+    tracesSampleRate: 1.0,
+    profilesSampleRate: 1.0,
+  }
+}
+
+export const nunjucksConfig = (app) => {
+  return {
+    autoescape: true,
+    express: app
+  }
+}

@@ -1,0 +1,32 @@
+{% extends "../layout.html" %}
+{% block content %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('asteroidsForm');
+        form.addEventListener('submit', function (event) {
+            const wereDangerousMeteors = document.getElementById('were-dangerous-meteors');
+            const count = document.getElementById('count');
+            wereDangerousMeteors.value = wereDangerousMeteors.checked;
+            count.value = count.checked;
+        });
+    });
+</script>
+
+<main>
+    <h1>Rover Photos</h1>
+    <form id="asteroidsForm" action="/meteors" method="get">
+        <label for="date">User ID:</label>
+        <input type="date" id="date" name="date" placeholder="Enter date">
+        <div>
+            <input type="checkbox" id="were-dangerous-meteors" name="were-dangerous-meteors">
+            <label for="were-dangerous-meteors">Show only potentially hazardous meteors</label>
+        </div>
+        <div>
+            <input type="checkbox" id="count" name="count">
+            <label for="count">Show count of meteors</label>
+        </div>
+        <button type="submit" class="button">Submit</button>
+    </form>
+    <a href="/" class="button">Back to main page</a>
+</main>
+{% endblock %}

@@ -20,7 +20,7 @@ export const handler = async (req, res, next) => {
       countOnly,
       dangerousOnly,
     );
-    res.json(response);
+    res.render("meteors/data.html", { asteroids: response, count: countOnly });
   } catch (error) {
     next(error);
   }
