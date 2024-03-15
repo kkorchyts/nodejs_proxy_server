@@ -1,0 +1,15 @@
+{% extends "../layout.html" %}
+{% block content %}
+<script src="scripts/rover-photos-form.js"></script>
+
+<main>
+    <h1>Rover Photos</h1>
+    <form id="roverPhotosForm" action="/photos" method="get">
+        <label for="rover">User ID:</label>
+        <input type="text" id="rover" name="rover" placeholder="Enter Rover Name">
+        <button type="submit" class="button">Submit</button>
+    </form>
+
+    <a href="/" class="button">Back to main page</a>
+</main>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "../layout.html" %}
+{% block content %}
+<main>
+    {% for date, info in asteroids %}
+    <h2>Date: {{ date }}</h2>
+    {% if count %}
+    <p>Count: {{ info.count }}</p>
+    {% else %}
+    {% for meteor in info.meteors %}
+    <p>ID: {{ meteor.id }}</p>
+    <p>Name: {{ meteor.name }}</p>
+    <p>Estimated Diameter (min): {{ meteor.estimated_diameter_in_meters.estimated_diameter_min }} meters</p>
+    <p>Estimated Diameter (max): {{ meteor.estimated_diameter_in_meters.estimated_diameter_max }} meters</p>
+    <p>Potentially Hazardous: {{ meteor.is_potentially_hazardous_asteroid }}</p>
+    <p>Close Approach Date: {{ meteor.close_approach_date_full }}</p>
+    <p>Relative Velocity: {{ meteor.relative_velocity_kilometers_per_second }} kilometers per second</p>
+    <hr>
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+</main>
+{% endblock %}

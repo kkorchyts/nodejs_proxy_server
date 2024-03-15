@@ -1,0 +1,22 @@
+{% extends "../layout.html" %}
+{% block content %}
+<script src="scripts/user-form.js"></script>
+
+<main>
+    <h1>User Data</h1>
+    <form id="userDataForm" action="/user" method="post">
+        <label for="id">User ID:</label>
+        <input type="text" id="id" name="id" placeholder="Enter User ID">
+
+        <label for="name">User Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter User Name">
+
+        <button type="submit" class="button">Submit</button>
+    </form>
+
+    <p id="successMessage" style="display:none; color:green;">Form has been successfully submitted.</p>
+    <p id="errorMessage" style="display:none; color:red;">There is an error.</p>
+
+    <a href="/" class="button">Back to main page</a>
+</main>
+{% endblock %}
