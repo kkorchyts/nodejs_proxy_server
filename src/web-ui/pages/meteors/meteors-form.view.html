@@ -1,0 +1,73 @@
+{% extends "../../views/layout.html" %}
+
+{% block content %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('asteroidsForm');
+        form.addEventListener('submit', function (event) {
+            const wereDangerousMeteors = document.getElementById('were-dangerous-meteors');
+            const count = document.getElementById('count');
+            wereDangerousMeteors.value = wereDangerousMeteors.checked;
+            count.value = count.checked;
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const headers = document.querySelectorAll('.date-header');
+        headers.forEach(header => {
+            header.addEventListener('click', () => {
+                const nextElement = header.nextElementSibling;
+                if (nextElement.style.display === 'none') {
+                    nextElement.style.display = 'block';
+                } else {
+                    nextElement.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+<main>
+    <h1>Meteors</h1>
+    <form id="asteroidsForm" action="/meteors" method="get">
+        <label for="date">User ID:</label>
+        <input type="date" id="date" name="date" placeholder="Enter date" {% if meteorsFilter.date %} value="{{ meteorsFilter.date.toISOString().substr(0, 10) }}" {% endif %} >
+        <div>
+            <input type="checkbox" id="were-dangerous-meteors" name="were-dangerous-meteors" {% if meteorsFilter.dangerousOnly %} checked=true {% endif %}>
+            <label for="were-dangerous-meteors">Show only potentially hazardous meteors</label>
+        </div>
+        <div>
+            <input type="checkbox" id="count" name="count" {% if meteorsFilter.countOnly %} checked=true {% endif %}>
+            <label for="count">Show count of meteors</label>
+        </div>
+        <button type="submit" class="button">Submit</button>
+    </form>
+    <div id="content">
+    {%if asteroids and asteroids|length > 0 %}
+        <hr>
+    {% endif %}
+    {% for date, info in asteroids %}
+        <h2 class="date-header">
+            <span class="indicator">&#9660;</span>
+            Date: {{ date }}
+        </h2>
+        <div class="meteor-info" style="display: block;">
+            {% if meteorsFilter.countOnly %}
+            <p>Count: {{ info.count }}</p>
+        {% else %}
+            {% for meteor in info.meteors %}
+            <p>ID: {{ meteor.id }}</p>
+            <p>Name: {{ meteor.name }}</p>
+            <p>Estimated Diameter (min): {{ meteor.estimated_diameter_in_meters.estimated_diameter_min }} meters</p>
+            <p>Estimated Diameter (max): {{ meteor.estimated_diameter_in_meters.estimated_diameter_max }} meters</p>
+            <p>Potentially Hazardous: {{ meteor.is_potentially_hazardous_asteroid }}</p>
+            <p>Close Approach Date: {{ meteor.close_approach_date_full }}</p>
+            <p>Relative Velocity: {{ meteor.relative_velocity_kilometers_per_second }} kilometers per second</p>
+            <hr>
+            {% endfor %}
+        {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+    <a href="/" class="button">Back to main page</a>
+</main>
+{% endblock %}

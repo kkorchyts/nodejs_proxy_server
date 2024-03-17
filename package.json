@@ -2,7 +2,7 @@
   "name": "node-proxys-erver",
   "version": "1.0.0",
   "description": "Project for learning how to make own proxy server",
-  "main": "src/api/server.js",
+  "main": "src/server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,6 +21,13 @@
     "nunjucks": "^3.2.4"
   },
   "devDependencies": {
-    "prettier": "3.2.5"
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "eslint": "^8.57.0",
+    "eslint-config-love": "^43.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "3.2.5",
+    "typescript": "^5.4.2"
   }
 }

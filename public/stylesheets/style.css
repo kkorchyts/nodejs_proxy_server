@@ -42,5 +42,17 @@ footer {
   width: 100%;
 }
 form {
-  margin-bottom: 20px; /* Add margin to create space below the form */
+  margin-bottom: 20px;
+}
+.last-element-before-footer {
+  margin-bottom: 60px;
+}
+.indicator {
+  float: right;
+}
+.date-header.expanded .indicator {
+  transform: rotate(180deg);
+}
+.date-header {
+  background-color: #e6e6e6;
 }

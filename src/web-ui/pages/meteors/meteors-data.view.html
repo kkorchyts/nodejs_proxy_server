@@ -1,4 +1,5 @@
-{% extends "../layout.html" %}
+{% extends "../../views/layout.html" %}
+
 {% block content %}
 <main>
     {% for date, info in asteroids %}
@@ -15,8 +16,8 @@
     <p>Close Approach Date: {{ meteor.close_approach_date_full }}</p>
     <p>Relative Velocity: {{ meteor.relative_velocity_kilometers_per_second }} kilometers per second</p>
     <hr>
-    {% endfor %}
-    {% endif %}
-    {% endfor %}
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
 </main>
 {% endblock %}

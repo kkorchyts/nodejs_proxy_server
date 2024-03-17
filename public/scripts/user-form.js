@@ -14,7 +14,7 @@ const submitForm = (event) => {
         id: document.getElementById('id').value,
         name: document.getElementById('name').value
     };
-    fetch('/user', {
+    fetch('/api/user', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
