@@ -9,7 +9,7 @@ import path from "path";
 import {__dirname} from "./pages/utils/utils.js";
 import {
     validateMeteorsFilterUiMiddleware,
-    validateRoverNameMiddleware, validateUserDataMiddleware
+    validateRoverNameMiddleware,
 } from "../common/middleware/validation.middleware.js";
 import {userController} from "./pages/user/user.controller.js";
 
