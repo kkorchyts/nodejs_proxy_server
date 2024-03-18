@@ -2,7 +2,7 @@ import {
   nasaGetPhotosClient,
   nasaGetPhotosManifestClient,
 } from "../../clients/index.js";
-import { Exception } from "../../api/exceptions/Exception.js";
+import { Exception } from "../../common/exceptions/Exception.js";
 
 const getRoverPhotoLastDate = async (roverName) => {
   const { max_date } = (await nasaGetPhotosManifestClient(roverName))

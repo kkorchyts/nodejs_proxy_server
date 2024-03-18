@@ -1,6 +1,6 @@
-export const exceptionFilterMiddleware = (err, req, res, next) => {
+export const exceptionFilterApiMiddleware = (err, req, res, next) => {
   const errorCode = err.statusCode || 500;
-  res.status(errorCode).render("server-error.html", {
+  res.status(errorCode).json({
     error: {
       code: errorCode,
       message: err.message,
@@ -8,3 +8,4 @@ export const exceptionFilterMiddleware = (err, req, res, next) => {
     }
   });
 };
+
