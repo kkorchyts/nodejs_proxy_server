@@ -24,7 +24,7 @@ const submitForm = (event) => {
         .then(response => {
             showMessage(response.ok);
         })
-        .catch(error => {
+        .catch(() => {
             showMessage(false);
         });
 };
