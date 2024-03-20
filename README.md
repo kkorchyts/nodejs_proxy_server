@@ -2,4 +2,4 @@
 
 # running the server:
 
-node .\src\api\server.js
+node .\src\api\server.ts
