@@ -9,6 +9,7 @@ import { NasaManifest } from "../dto/nasa-manifest";
 import { NasaAsteroids } from "../dto/nasa-asteroids";
 import { NasaRoverPhotos } from "../dto/nasa-rover-photos";
 import { nasaRoverPhotosSchema } from "../schemas/nasa-rover-photos.schema";
+import { format } from "date-fns";
 
 export class AxiosNasaClientImpl implements NasaClientInterface {
   getAsteroid(period: Period): NasaAsteroids {
@@ -37,8 +38,8 @@ export class AxiosNasaClientImpl implements NasaClientInterface {
       url: config.nasaApiConfig.asteroidsUrl,
       validateStatus: () => true,
       params: {
-        start_date: from,
-        end_date: to,
+        start_date: format(from, "yyyy-MM-dd"),
+        end_date: format(to, "yyyy-MM-dd"),
         api_key: config.nasaApiConfig.key
       }
     };
