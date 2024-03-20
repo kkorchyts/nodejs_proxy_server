@@ -36,10 +36,7 @@ const paramMeteorsFilter = (req: Request): ReaderResult => {
   };
 };
 
-const validator = <T extends Joi.AnySchema>(
-  reader: (req: Request) => ReaderResult,
-  schema?: T
-) => {
+const validator = <T extends Joi.AnySchema>(reader: (req: Request) => ReaderResult, schema?: T) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { data, key } = reader(req);
@@ -54,14 +51,8 @@ const validator = <T extends Joi.AnySchema>(
   };
 };
 
-export const validateRoverNameMiddleware = validator(
-  paramRoverNameReader,
-  roverNameSchema
-);
-export const validateUserDataMiddleware = validator(
-  bodyUserDataReader,
-  userDataSchema
-);
+export const validateRoverNameMiddleware = validator(paramRoverNameReader, roverNameSchema);
+export const validateUserDataMiddleware = validator(bodyUserDataReader, userDataSchema);
 
 export const validateMeteorsFilterApiMiddleware = validator(
   paramMeteorsFilter,

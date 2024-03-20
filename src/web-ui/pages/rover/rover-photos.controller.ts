@@ -22,11 +22,7 @@ export class RoverPhotosController extends BaseController {
     ]);
   }
 
-  async renderRoverNameFormPage(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
+  async renderRoverNameFormPage(req: Request, res: Response, next: NextFunction) {
     try {
       res.render(path.join(__dirname, "rover-name-form.view.html"));
     } catch (error) {

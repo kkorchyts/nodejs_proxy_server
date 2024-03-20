@@ -29,56 +29,37 @@ export class NasaServiceImpl implements NasaService {
   }
 
   private async getRoverPhotoLastDate(roverName: string) {
-    const { max_date } = (await this.nasaClient.getPhotosManifest(roverName))
-      .photo_manifest;
+    const { max_date } = (await this.nasaClient.getPhotosManifest(roverName)).photo_manifest;
     if (!max_date) {
-      throw new Exception(
-        500,
-        `Wrong max_date from rover ${roverName}. max_date = ${max_date}`
-      );
+      throw new Exception(500, `Wrong max_date from rover ${roverName}. max_date = ${max_date}`);
     }
     return max_date;
   }
 
-  private parseAsteroidsToArray(
-    dataArray: any[],
-    dangerousOnly: boolean
-  ): MeteorsInfo {
+  private parseAsteroidsToArray(dataArray: any[], dangerousOnly: boolean): MeteorsInfo {
     return {
       meteors: dataArray
-        .filter(
-          (data) =>
-            !dangerousOnly || data.is_potentially_hazardous_asteroid === true
-        )
+        .filter((data) => !dangerousOnly || data.is_potentially_hazardous_asteroid === true)
         .map((data) => ({
           id: data.id,
           name: data.name,
           estimated_diameter_in_meters: {
-            estimated_diameter_min:
-              data.estimated_diameter.meters.estimated_diameter_min,
-            estimated_diameter_max:
-              data.estimated_diameter.meters.estimated_diameter_max
+            estimated_diameter_min: data.estimated_diameter.meters.estimated_diameter_min,
+            estimated_diameter_max: data.estimated_diameter.meters.estimated_diameter_max
           },
-          is_potentially_hazardous_asteroid:
-            data.is_potentially_hazardous_asteroid,
-          close_approach_date_full:
-            data.close_approach_data[0].close_approach_date_full,
+          is_potentially_hazardous_asteroid: data.is_potentially_hazardous_asteroid,
+          close_approach_date_full: data.close_approach_data[0].close_approach_date_full,
           relative_velocity_kilometers_per_second:
             data.close_approach_data[0].relative_velocity.kilometers_per_second
         }))
     };
   }
 
-  private parseAsteroidsToCount(
-    dataArray: any,
-    dangerousOnly: boolean
-  ): MeteorsCountInfo {
+  private parseAsteroidsToCount(dataArray: any, dangerousOnly: boolean): MeteorsCountInfo {
     return {
       count: dataArray.reduce(
         (acc: number, data: any) =>
-          !dangerousOnly || data.is_potentially_hazardous_asteroid === true
-            ? acc + 1
-            : acc,
+          !dangerousOnly || data.is_potentially_hazardous_asteroid === true ? acc + 1 : acc,
         0
       )
     };
@@ -88,9 +69,7 @@ export class NasaServiceImpl implements NasaService {
     countOnly: boolean,
     dangerousOnly: boolean
   ): Record<string, MeteorsInfo> {
-    const asteroidArrayParser = countOnly
-      ? this.parseAsteroidsToCount
-      : this.parseAsteroidsToArray;
+    const asteroidArrayParser = countOnly ? this.parseAsteroidsToCount : this.parseAsteroidsToArray;
     return Object.keys(data.near_earth_objects).reduce((acc, key) => {
       return {
         ...acc,

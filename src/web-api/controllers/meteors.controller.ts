@@ -19,15 +19,9 @@ export class MeteorsController extends BaseController {
 
   async getMeteors(req: Request, res: Response, next: NextFunction) {
     try {
-      const { date, countOnly, dangerousOnly } = (req as any).metadata[
-        "meteorsFilter"
-      ];
+      const { date, countOnly, dangerousOnly } = (req as any).metadata["meteorsFilter"];
       const period = getPreviousPeriod(date);
-      const response = await nasaService.getAsteroidsByPeriod(
-        period,
-        countOnly,
-        dangerousOnly
-      );
+      const response = await nasaService.getAsteroidsByPeriod(period, countOnly, dangerousOnly);
       res.json(response);
     } catch (error) {
       next(error);

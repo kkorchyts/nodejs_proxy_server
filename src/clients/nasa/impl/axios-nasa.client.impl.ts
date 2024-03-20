@@ -2,10 +2,7 @@ import { config } from "../../../config/config";
 import { Period } from "../../../web-api/utils/date-utils";
 import axios, { AxiosRequestConfig } from "axios";
 import Joi from "joi";
-import {
-  NasaClientInterface,
-  RoverPhotoParams
-} from "../nasa.client.interface";
+import { NasaClientInterface, RoverPhotoParams } from "../nasa.client.interface";
 import { nasaAsteroidsSchema } from "../schemas/nasa-asteroids.schema";
 import { nasaManifestSchema } from "../schemas/nasa-manifest.schema";
 import { NasaManifest } from "../dto/nasa-manifest";
@@ -15,30 +12,18 @@ import { nasaRoverPhotosSchema } from "../schemas/nasa-rover-photos.schema";
 
 export class AxiosNasaClientImpl implements NasaClientInterface {
   getAsteroid(period: Period): NasaAsteroids {
-    return this.sendRequest(
-      this.buildGetAsteroidsRequest(period),
-      nasaAsteroidsSchema
-    );
+    return this.sendRequest(this.buildGetAsteroidsRequest(period), nasaAsteroidsSchema);
   }
 
   getPhotosManifest(roverName: string): NasaManifest {
-    return this.sendRequest(
-      this.buildGetManifestRequest(roverName),
-      nasaManifestSchema
-    );
+    return this.sendRequest(this.buildGetManifestRequest(roverName), nasaManifestSchema);
   }
 
   getRoverPhotos(params: RoverPhotoParams): NasaRoverPhotos {
-    return this.sendRequest(
-      this.buildGetPhotosRequest(params),
-      nasaRoverPhotosSchema
-    );
+    return this.sendRequest(this.buildGetPhotosRequest(params), nasaRoverPhotosSchema);
   }
 
-  private async sendRequest(
-    request: AxiosRequestConfig,
-    schema: Joi.AnySchema
-  ): Promise<any> {
+  private async sendRequest(request: AxiosRequestConfig, schema: Joi.AnySchema): Promise<any> {
     const response = await axios.request(request);
     return await schema.validateAsync(response.data, {
       abortEarly: false,
@@ -70,10 +55,7 @@ export class AxiosNasaClientImpl implements NasaClientInterface {
     };
   }
 
-  private buildGetPhotosRequest({
-    roverName,
-    earthDate
-  }: RoverPhotoParams): AxiosRequestConfig {
+  private buildGetPhotosRequest({ roverName, earthDate }: RoverPhotoParams): AxiosRequestConfig {
     return {
       baseURL: config.nasaApiConfig.baseUrl,
       url: `${config.nasaApiConfig.roverPhotosUrl}${roverName}/photos`,

@@ -29,19 +29,13 @@ app.use(uiRouter);
 app.use(Sentry.Handlers.errorHandler());
 
 const exceptionFilterApiMiddleware = new ExceptionFilterApiMiddleware();
-app.use(
-  "/api/*",
-  exceptionFilterApiMiddleware.catch.bind(exceptionFilterApiMiddleware)
-);
+app.use("/api/*", exceptionFilterApiMiddleware.catch.bind(exceptionFilterApiMiddleware));
 
 const exceptionFilterUiMiddleware = new ExceptionFilterUiMiddleware();
 app.use(exceptionFilterUiMiddleware.catch.bind(exceptionFilterUiMiddleware));
 
 const pageNotFoundApiMiddleware = new PageNotFoundApiMiddleware();
-app.use(
-  "/api/*",
-  pageNotFoundApiMiddleware.catch.bind(pageNotFoundApiMiddleware)
-);
+app.use("/api/*", pageNotFoundApiMiddleware.catch.bind(pageNotFoundApiMiddleware));
 
 const pageNotFoundUiMiddleware = new PageNotFoundUiMiddleware();
 app.use("*", pageNotFoundUiMiddleware.catch.bind(pageNotFoundUiMiddleware));
