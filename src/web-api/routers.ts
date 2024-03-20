@@ -1,7 +1,6 @@
 import express from "express";
 import { MeteorsController } from "./controllers/meteors.controller";
 import { RoverPhotosController } from "./controllers/rover-photos.controller";
-import { ExceptionFilterApiMiddleware } from "./middleware/exception-filter.middleware";
 import { UserController } from "./controllers/user.controller";
 
 export const router = express.Router();

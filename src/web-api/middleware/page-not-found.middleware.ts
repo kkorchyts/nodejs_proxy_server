@@ -1,5 +1,4 @@
-import { NextFunction, Request, Response } from "express";
-import { Exception } from "../../common/exceptions/Exception";
+import { Request, Response } from "express";
 
 export class PageNotFoundApiMiddleware {
   catch(req: Request, res: Response): void {

@@ -2,10 +2,7 @@ import { getLastPhotoByRoverName } from "./rover-photos.model";
 import path from "path";
 import { Request, Response, NextFunction } from "express";
 import { BaseController } from "../../../common/base.controller";
-import {
-  validateMeteorsFilterUiMiddleware,
-  validateRoverNameMiddleware
-} from "../../../common/middleware/validation.middleware";
+import { validateRoverNameMiddleware } from "../../../common/middleware/validation.middleware";
 
 export class RoverPhotosController extends BaseController {
   constructor() {
